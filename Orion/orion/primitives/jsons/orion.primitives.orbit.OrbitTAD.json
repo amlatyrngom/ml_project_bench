@@ -1,0 +1,48 @@
+{
+    "name": "orion.primitives.orbit.OrbitTAD",
+    "contributors": ["Amadou Ngom <ngom@mit.edu>"],
+    "documentation": "",
+    "description": "TAD using Orbit.",
+    "classifiers": {
+        "type": "postprocessor",
+        "subtype": "anomaly_detector"
+    },
+    "modalities": [],
+    "primitive": "orion.primitives.orbit.OrbitTAD",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "produce": {
+        "method": "predict",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "value_column": {
+                "type": "str",
+                "default": "value"
+            },
+            "time_column": {
+                "type": "str",
+                "default": "timestamp"
+            }
+        }
+    }
+}

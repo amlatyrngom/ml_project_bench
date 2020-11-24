@@ -1,0 +1,25 @@
+{
+    "metadata": {
+        "name": "keras.Sequential.MLPMultiClassClassifier",
+        "data_type": "single_table",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "iris",
+        "context": {}
+    },
+    "primitives": [
+        "mlprimitives.custom.counters.UniqueCounter",
+        "keras.Sequential.MLPMultiClassClassifier"
+    ],
+    "input_names": {
+        "mlprimitives.custom.counters.UniqueCounter#1": {
+            "X": "y"
+        }
+    },
+    "output_names": {
+        "mlprimitives.custom.counters.UniqueCounter#1": {
+            "counts": "classes"
+        }
+    }
+}
