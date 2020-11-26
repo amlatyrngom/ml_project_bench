@@ -13,7 +13,6 @@ pipelines = [
     'mssa'
 ]
 
-metrics = ['f1', 'accuracy', 'recall', 'precision']
 del METRICS['accuracy']
 METRICS['confusion_matrix'] = contextual_confusion_matrix
 metrics = {k: partial(fun, weighted=False) for k, fun in METRICS.items()}
