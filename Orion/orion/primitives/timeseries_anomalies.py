@@ -518,9 +518,10 @@ def find_anomalies(errors, index, z_range=(0, 10), window_size=None, window_size
     sequences = _merge_sequences(sequences)
 
     anomalies = list()
-
+    # plt.figure()
     for start, stop, score in sequences:
         anomalies.append([index[int(start)], index[int(stop)], score])
+   
     #     plt.axvspan(start, stop, facecolor='g', alpha=0.5)
     # plt.plot(errors)
     # plt.show()

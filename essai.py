@@ -18,7 +18,7 @@ METRICS['confusion_matrix'] = contextual_confusion_matrix
 metrics = {k: partial(fun, weighted=False) for k, fun in METRICS.items()}
 
 data = {
-    'YAHOOA2': ['synthetic_85']
+    'realTraffic': ['occupancy_6005']
 }
 
 scores = benchmark(pipelines=pipelines, datasets=data, metrics=metrics, rank='f1')
