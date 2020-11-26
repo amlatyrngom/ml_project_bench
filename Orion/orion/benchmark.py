@@ -324,8 +324,8 @@ def benchmark(pipelines=None, datasets=None, hyperparameters=None, metrics=METRI
     pipelines = pipelines or VERIFIED_PIPELINES
     datasets = datasets or BENCHMARK_DATA
 
-    print(BENCHMARK_DATA)
-    print(BENCHMARK_PARAMS)
+    # print(BENCHMARK_DATA)
+    # print(BENCHMARK_PARAMS)
 
 
     if isinstance(pipelines, list):

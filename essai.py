@@ -16,5 +16,5 @@ data = {
     'YAHOOA2': ['synthetic_85']
 }
 
-scores = benchmark(pipelines=pipelines, datasets=data, metrics=metrics, rank='f1')
+scores = benchmark(pipelines=pipelines, datasets=["YAHOOA2"], metrics=metrics, rank='f1')
 print(scores)
