@@ -18,7 +18,7 @@ METRICS['confusion_matrix'] = contextual_confusion_matrix
 metrics = {k: partial(fun, weighted=False) for k, fun in METRICS.items()}
 
 data = {
-    'realTweets': ['Twitter_volume_GOOG']
+    'MSL': ['A-2','A-1','A-3']
 }
 
 scores = benchmark(pipelines=pipelines, datasets=data, metrics=metrics, rank='f1')

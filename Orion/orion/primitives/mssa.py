@@ -31,4 +31,4 @@ class mSSATAD(object):
 		# plt.plot(error)
 		# plt.plot(results)
 		# plt.show()
-		return error, X[self.time_col]
+		return error, X[self.time_col].values
