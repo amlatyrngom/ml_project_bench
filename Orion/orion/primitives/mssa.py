@@ -22,7 +22,6 @@ class mSSATAD(object):
 			print ('no split')
 		else:
 			X.index = np.arange(len(self.train_data),len(self.train_data)+len(X))
-			print(X.loc[:,[self.value_col]], X.loc[:,[self.value_col]].index.values[-1])
 			self.model.update_model(X.loc[:,[self.value_col]])
 
 		results = self.model.predict(self.value_col,X.index[0],X.index[-1])['Mean Predictions'].values

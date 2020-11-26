@@ -38,7 +38,7 @@
         ]
     },
     "hyperparameters": {
-        "fixed": {
+        "tunable": {
             "value_column": {
                 "type": "str",
                 "default": "value"
@@ -49,7 +49,7 @@
             },
             "rank": {
                 "type": "int",
-                "default": 2
+                "default": 1
             }
         }
     }
