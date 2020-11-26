@@ -1,0 +1,3 @@
+[submodule "mSSA"]
+	path = mSSA
+	url = https://github.com/AbdullahO/mSSA.git
