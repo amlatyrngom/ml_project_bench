@@ -7,7 +7,7 @@ site.addsitedir('MLPrimitives/')
 from orion.benchmark import benchmark
 
 pipelines = [
-    'orbit'
+    'mssa'
 ]
 
 metrics = ['f1', 'accuracy', 'recall', 'precision']
