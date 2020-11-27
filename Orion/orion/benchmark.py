@@ -278,6 +278,41 @@ def _summarize_results(df, metrics):
 
     return result
 
+def _summarize_results_datasets(df, metrics):
+    """ Summarize the result of benchmark.
+
+    The table is summarized for  the number of anomalies detected, and
+    the average f1 score acheived by that pipeline across datasets.
+    """
+    def return_cm(x):
+        if isinstance(x, int):
+            return (0, 0, 0)
+
+        elif len(x) > 3:
+            return x[1:]
+
+        return x
+
+    def get_status(x):
+        return {
+            "OK": 0,
+            "ERROR": 1
+        }[x]
+
+    df['status'] = df['status'].apply(get_status)
+    df['confusion_matrix'] = [str(x) for x in df['confusion_matrix'] ]
+    df['confusion_matrix'] = df['confusion_matrix'].apply(ast.literal_eval)
+    df['confusion_matrix'] = df['confusion_matrix'].apply(return_cm)
+    df[['fp', 'fn', 'tp']] = pd.DataFrame(df['confusion_matrix'].tolist(), index=df.index)
+
+    # calculate f1 score
+    df_ = df.groupby(['dataset', 'pipeline'])[['fp', 'fn', 'tp']].sum().reset_index()
+
+    precision = df_['tp'] / (df_['tp'] + df_['fp'])
+    recall = df_['tp'] / (df_['tp'] + df_['fn'])
+    df_['f1'] = 2 * (precision * recall) / (precision + recall)
+    return df_
+
 
 def benchmark(pipelines=None, datasets=None, hyperparameters=None, metrics=METRICS, rank='f1',
               distributed=False, test_split=False, detrend=False, output_path=None):
@@ -324,8 +359,8 @@ def benchmark(pipelines=None, datasets=None, hyperparameters=None, metrics=METRI
     pipelines = pipelines or VERIFIED_PIPELINES
     datasets = datasets or BENCHMARK_DATA
 
-    print(BENCHMARK_DATA)
-    print(BENCHMARK_PARAMS)
+    # print(BENCHMARK_DATA)
+    # print(BENCHMARK_PARAMS)
 
 
     if isinstance(pipelines, list):

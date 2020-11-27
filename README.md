@@ -4,6 +4,7 @@ Make sure to run this first to avoid dependency issues:
 ```py
 pip install -e MLPrimitives/
 pip install -e Orion/
+pip install -e mSSA/
 pip install -r requirements.txt
 ```
 

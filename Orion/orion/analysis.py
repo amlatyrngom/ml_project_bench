@@ -45,8 +45,8 @@ def analyze(pipeline, train, test=None, hyperparams=None):
     if not isinstance(pipeline, MLPipeline):
         pipeline = _load_pipeline(pipeline, hyperparams)
 
-    print("TRAIN: ", train)
-    print("TEST: ", test)
+    # print("TRAIN: ", train)
+    # print("TEST: ", test)
     events = _run_pipeline(pipeline, train, test)
 
     return _build_events_df(events)

@@ -6,7 +6,7 @@ Implementation inspired by the paper https://arxiv.org/pdf/1802.04431.pdf
 import numpy as np
 import pandas as pd
 from scipy.optimize import fmin
-
+import matplotlib.pyplot as plt
 
 def regression_errors(y, y_hat, smoothing_window=0.01, smooth=True):
     """Compute an array of absolute errors comparing predictions and expected output.
@@ -518,8 +518,11 @@ def find_anomalies(errors, index, z_range=(0, 10), window_size=None, window_size
     sequences = _merge_sequences(sequences)
 
     anomalies = list()
-
+    # plt.figure()
     for start, stop, score in sequences:
         anomalies.append([index[int(start)], index[int(stop)], score])
-
+   
+    #     plt.axvspan(start, stop, facecolor='g', alpha=0.5)
+    # plt.plot(errors)
+    # plt.show()
     return np.asarray(anomalies)

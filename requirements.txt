@@ -33,6 +33,7 @@ featuretools==0.11.0
 fsspec==0.8.4
 future==0.18.2
 gast==0.3.3
+gluonts
 google-auth==1.23.0
 google-auth-oauthlib==0.4.2
 google-pasta==0.2.0
@@ -75,6 +76,7 @@ mlblocks==0.3.4
 mongoengine==0.16.3
 msgpack==1.0.0
 msrest==0.6.19
+mxnet==1.6 
 nbclient==0.5.1
 nbconvert==6.0.7
 nbformat==5.0.8
