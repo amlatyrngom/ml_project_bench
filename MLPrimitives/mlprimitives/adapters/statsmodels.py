@@ -37,6 +37,8 @@ class ARIMA(object):
         arima_results = list()
         dimensions = len(X.shape)
 
+        print("ARIMA DIMENSIONS", X.shape)
+
         if dimensions > 2:
             raise ValueError("Only 1D o 2D arrays are supported")
 

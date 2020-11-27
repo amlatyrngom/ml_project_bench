@@ -28,7 +28,11 @@
         ],
         "output": [
             {
-                "name": "y",
+                "name": "errors",
+                "type": "ndarray"
+            },
+            {
+                "name": "index",
                 "type": "ndarray"
             }
         ]
@@ -42,6 +46,12 @@
             "time_column": {
                 "type": "str",
                 "default": "timestamp"
+            }
+        },
+        "tunable": {
+            "global_trend_option": {
+                "type": "str",
+                "default": "linear"
             }
         }
     }
