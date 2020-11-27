@@ -1,19 +1,23 @@
 {
-    "name": "orion.primitives.deepsr.DeepAR",
+    "name": "orion.primitives.prophet.ProphetTAD",
     "contributors": ["Abdullah Alomar <aalomar@mit.edu>"],
     "documentation": "",
-    "description": "TAD using DeepAR.",
+    "description": "TAD using Prophet.",
     "classifiers": {
         "type": "postprocessor",
         "subtype": "anomaly_detector"
     },
     "modalities": [],
-    "primitive": "orion.primitives.deepar.DeepAR",
+    "primitive": "orion.primitives.prophet.ProphetTAD",
     "fit": {
         "method": "fit",
         "args": [
             {
                 "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "index",
                 "type": "ndarray"
             }
         ]
@@ -23,6 +27,10 @@
         "args": [
             {
                 "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "index",
                 "type": "ndarray"
             }
         ],
@@ -34,15 +42,11 @@
             {
                 "name": "y",
                 "type": "ndarray"
-            },
-            {
-                "name": "index",
-                "type": "ndarray"
             }
         ]
     },
     "hyperparameters": {
-        "fixed": {
+        "tunable": {
             "value_column": {
                 "type": "str",
                 "default": "value"
@@ -50,24 +54,7 @@
             "time_column": {
                 "type": "str",
                 "default": "timestamp"
-            },
-            "freq": {
-                "type": "str",
-                "default": "1H"
-            },
-            "epochs": {
-                "type": "int",
-                "default": 20
-            },
-            "h": {
-                "type": "int",
-                "default": 1
-            },
-            "no_samples": {
-                "type": "int",
-                "default": 100
             }
-        
         }
     }
 }
