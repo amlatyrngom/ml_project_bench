@@ -310,7 +310,7 @@ def _summarize_results_datasets(df, metrics):
 
     precision = df_['tp'] / (df_['tp'] + df_['fp'])
     recall = df_['tp'] / (df_['tp'] + df_['fn'])
-    df_['f1'] = 2 * (precision * recall) / (precision + recall)
+    df_['f1'] = 2 * (precision * recall) / (precision + recall + 1e-10)
     return df_
 
 
