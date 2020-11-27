@@ -11,10 +11,6 @@ class OrbitTAD(object):
         self.value_col = value_column
         self.time_col = time_column
 
-    def fit(self, X):
-        print("ORBIT FIT: ", X)
-        pass
-
     def predict(self, X):
         # arima_results = list()
         # dimensions = len(X.shape)
@@ -44,9 +40,11 @@ class OrbitTAD(object):
         # print("ARIMA RESULTS: ", arima_results.shape)
         # return arima_results
         results = []
+        print("ORBIT DIMENSIONS", X.shape)
         step_size = 1
         self.model = DLTFull(response_col=self.value_col, date_col=self.time_col, seasonality=52, seed=42)
-        for seq in X:
+        for iter_idx, seq in enumerate(X):
+            print("Iteration {} out of {}".format(iter_idx + 1, len(X)))
             seq = seq.flatten()
             print("SEQ: ", seq.shape)
             df_data = {

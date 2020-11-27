@@ -16,12 +16,12 @@
         },
         "mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences#1": {
             "target_column": 0,
-            "window_size": 100
+            "window_size": 250
         },
         "numpy.reshape#1": {
             "newshape": [
                 -1,
-                100
+                250
             ]
         },
         "orion.primitives.orbit.OrbitTAD#1": {

@@ -7,10 +7,10 @@ site.addsitedir('MLPrimitives/')
 from orion.benchmark import benchmark
 
 pipelines = [
-    'orbit'
+    'orbit',
 ]
 
-metrics = ['f1', 'accuracy', 'recall', 'precision']
+metrics = ['f1']
 
 data = {
     'YAHOOA2': ['synthetic_85']

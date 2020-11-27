@@ -9,15 +9,6 @@
     },
     "modalities": [],
     "primitive": "orion.primitives.orbit.OrbitTAD",
-    "fit": {
-        "method": "fit",
-        "args": [
-            {
-                "name": "X",
-                "type": "ndarray"
-            }
-        ]
-    },
     "produce": {
         "method": "predict",
         "args": [
