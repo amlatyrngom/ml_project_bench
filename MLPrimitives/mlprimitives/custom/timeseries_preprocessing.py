@@ -175,6 +175,7 @@ def time_segments_aggregate(X, interval, time_column, method=['mean']):
             * Sequence of aggregated values, one column for each aggregation method.
             * Sequence of index values (first index of each aggregated segment).
     """
+    print("TIMESEGMENT: ", X.shape, interval, time_column, method)
     if isinstance(X, np.ndarray):
         X = pd.DataFrame(X)
 

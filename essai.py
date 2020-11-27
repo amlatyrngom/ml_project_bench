@@ -1,31 +1,63 @@
+from time import time
+from tqdm import tqdm 
 import site
 import sys
-from Orion.orion.evaluation import CONTEXTUAL_METRICS as METRICS
-from Orion.orion.evaluation import contextual_confusion_matrix
-from functools import partial
-from Orion.orion.benchmark import _summarize_results_datasets
+import pandas as pd 
+import numpy as np
+import ast 
+import matplotlib.pyplot as plt
 
 site.addsitedir('Orion/')
 site.addsitedir('MLPrimitives/')
 
-from orion.benchmark import benchmark
+from orion.benchmark import benchmark, _summarize_results_datasets
+from Orion.orion.evaluation import CONTEXTUAL_METRICS as METRICS
+from Orion.orion.evaluation import contextual_confusion_matrix
+from functools import partial
 
-pipelines = [
-    'mssa'
-]
-
-# hyperparamters = {'MSL':{ 
-# "orion.primitives.mssa.mSSATAD#1" :{'rank':50}}}
-
-
-
-del METRICS['accuracy']
+if ('accuracy' in METRICS): del METRICS['accuracy']
 METRICS['confusion_matrix'] = contextual_confusion_matrix
 metrics = {k: partial(fun, weighted=False) for k, fun in METRICS.items()}
 
+BUCKET = 'd3-ai-orion'
+S3_URL = 'https://{}.s3.amazonaws.com/{}'
+
+BENCHMARK_DATA = pd.read_csv(S3_URL.format(
+    BUCKET, 'datasets.csv'), index_col=0, header=None).applymap(ast.literal_eval).to_dict()[1]
+
+def make_hyperparams(global_trend):
+    hyperparams = {}
+    val = {
+        'orbit': {
+            "orion.primitives.orbit.OrbitTAD#1": {
+                "global_trend_option": global_trend
+            }
+        }
+    }
+    for k in BENCHMARK_DATA:
+        hyperparams[k] = val
+    return hyperparams
 
 
-scores = benchmark(pipelines=pipelines, datasets=None, metrics=metrics, rank='f1')
-print(scores)
-summary = _summarize_results_datasets(scores, metrics)
-print(summary)
+score_dataframes = []
+summary_dataframes = []
+
+trends = ['linear'] #, 'flat', 'logistic', 'loglinear']
+
+for trend in trends:
+    pipelines = ['orbit']
+    data = BENCHMARK_DATA
+    print(data)
+    hyperparameters = make_hyperparams(trend)
+    scores = benchmark(pipelines=pipelines, datasets=data, metrics=metrics, rank='f1', hyperparameters=hyperparameters)
+    scores['trend'] = trend
+    score_dataframes.append(scores)
+    scores['confusion_matrix'] = [str(x) for x in scores['confusion_matrix']]
+    
+    score_summary = _summarize_results_datasets(scores, metrics)
+    score_summary['trend'] = trend
+    summary_dataframes.append(score_summary)
+
+
+pd.concat(score_dataframes, ignore_index=True).to_pickle("orbit_scores.pkl")
+pd.concat(summary_dataframes, ignore_index=True).to_pickle("orbit_summaries.pkl")

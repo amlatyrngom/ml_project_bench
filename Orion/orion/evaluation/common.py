@@ -40,7 +40,7 @@ def _precision(expected, observed, data, start, end, cm):
     tn, fp, fn, tp = cm(expected, observed, data, start, end)
 
     try:
-        return tp / (tp + fp)
+        return tp / (tp + fp + 1e-10)
 
     except ZeroDivisionError as ex:
         LOGGER.exception(
@@ -53,7 +53,7 @@ def _recall(expected, observed, data, start, end, cm):
     tn, fp, fn, tp = cm(expected, observed, data, start, end)
 
     try:
-        return tp / (tp + fn)
+        return tp / (tp + fn + 1e-10)
 
     except ZeroDivisionError as ex:
         LOGGER.exception(
@@ -67,7 +67,7 @@ def _f1_score(expected, observed, data, start, end, cm):
     recall = _recall(expected, observed, data, start, end, cm)
 
     try:
-        return 2 * (precision * recall) / (precision + recall)
+        return 2 * (precision * recall) / (precision + recall + 1e-10)
 
     except ZeroDivisionError:
         LOGGER.exception(

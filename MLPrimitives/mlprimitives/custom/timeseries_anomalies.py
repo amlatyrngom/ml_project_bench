@@ -36,7 +36,11 @@ def regression_errors(y, y_hat, smoothing_window=0.01, smooth=True):
     if not smooth:
         return errors
 
-    smoothing_window = int(smoothing_window * len(y))
+    print("WTF")
+
+
+    
+    smoothing_window = int(smoothing_window * len(y)) # WTF
 
     return pd.Series(errors).ewm(span=smoothing_window).mean().values
 
@@ -451,7 +455,7 @@ def find_anomalies(errors, index, z_range=(0, 10), window_size=None, window_step
             Array containing start-index, end-index, score for each anomalous sequence that
             was found.
     """
-
+    print("FINDING ANOMALIES")
     window_size = window_size or len(errors)
     window_step_size = window_step_size or window_size
     window_start = 0
