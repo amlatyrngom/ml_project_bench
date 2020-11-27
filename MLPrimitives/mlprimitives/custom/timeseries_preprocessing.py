@@ -200,7 +200,6 @@ def time_segments_aggregate(X, interval, time_column, method=['mean']):
         index.append(start_ts)
         start_ts = end_ts
 
-    print("TIMESEGMENT RETURN", np.asarray(values), np.asarray(index))
     return np.asarray(values), np.asarray(index)
 
 

@@ -29,6 +29,9 @@ def regression_errors(y, y_hat, smoothing_window=0.01, smooth=True):
         ndarray:
             Array of errors.
     """
+    print("REGRESSION ERRORS")
+    print("Y: ", y)
+    print("Y_HAT: ", y_hat)
     errors = np.abs(y - y_hat)[:, 0]
 
     if not smooth:
