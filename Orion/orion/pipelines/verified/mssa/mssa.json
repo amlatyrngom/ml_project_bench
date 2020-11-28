@@ -5,7 +5,8 @@
     ],
     "init_params": {
         "orion.primitives.timeseries_anomalies.find_anomalies#1": {
-            "fixed_threshold": true
+                    "window_size": 2000,
+        "window_step_size": 100
         }
     }
 }

@@ -187,8 +187,9 @@ def time_segments_aggregate(X, interval, time_column, method=['mean']):
     start_ts = X.index.values[0]
     max_ts = X.index.values[-1]
 
-    values = list()
+    # values = np.zeros([len(X.index)/interval,len(method)])
     index = list()
+    values = list()
     while start_ts <= max_ts:
         end_ts = start_ts + interval
         subset = X.loc[start_ts:end_ts - 1]

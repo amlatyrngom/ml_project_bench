@@ -18,8 +18,11 @@ class DeepAR(object):
 		self.time_col = time_column
 
 
-	def fit(self, X, index):
+	def fit(self, X):
+		print('start fit')
 		T,_ = X.shape  # number of time series
+		X = X[[self.value_col]].values
+		print(X.shape)
 		prediction_length = self.h
 		train_data = X.T
 		h = self.h
@@ -37,14 +40,17 @@ class DeepAR(object):
 		
 	def predict(self, X):
 		#initialise prediction array
+		index = X[[self.time_col]].values
+		X = X[[self.value_col]].values
 		data_test = X.T
 		predictions = np.zeros(data_test.shape)
 		start_index = len(self.train_data)
 		data = np.concatenate((self.train_data, data_test), axis = 1)
-		
-		if np.sum((self.train_data.T - X)**2) < 1e-10:
-			start_index = 0
-			data = data_test
+		# a hacjy solution to check if there is no time/train split
+		if self.train_data.T.shape ==  X.shape:
+			if np.sum((self.train_data.T - X)**2) < 1e-10:
+				start_index = 0
+				data = data_test
 		
 		windows = data.shape[1]-1
 		list_ = []
@@ -62,6 +68,6 @@ class DeepAR(object):
 		        predictions[j,i*self.h:(i+1)*self.h] = forecast_it[it].mean
 		        it+=1
 		# error = np.abs((predictions - X.T))
-
-		return predictions[:,:].T, X[:,:]
+		index 
+		return predictions[:,:].T, X[:,:], index
 
