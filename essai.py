@@ -1,9 +1,15 @@
 from time import time
 from tqdm import tqdm 
 import site
-import ast
 import sys
-import os
+import pandas as pd 
+import numpy as np
+import ast 
+import matplotlib.pyplot as plt
+
+site.addsitedir('Orion/')
+site.addsitedir('MLPrimitives/')
+
 from orion.benchmark import benchmark, _summarize_results_datasets
 from Orion.orion.evaluation import CONTEXTUAL_METRICS as METRICS
 from Orion.orion.evaluation import contextual_confusion_matrix
@@ -36,11 +42,12 @@ def make_hyperparams(global_trend):
 score_dataframes = []
 summary_dataframes = []
 
-trends = ['linear'] #, 'flat', 'logistic', 'loglinear']
+trends = ['flat'] #, 'flat', 'logistic', 'loglinear']
+datasets = ['realTweets', 'realAWSCloudwatch', 'realAdExchange', 'artificialWithAnomaly', 'realTraffic']
 
 for trend in trends:
-    pipelines = ['pipeline']
-    data = BENCHMARK_DATA
+    pipelines = ['orbit']
+    data = {k:BENCHMARK_DATA[k] for k in datasets}
     print(data)
     hyperparameters = make_hyperparams(trend)
     scores = benchmark(pipelines=pipelines, datasets=data, metrics=metrics, rank='f1', hyperparameters=hyperparameters)

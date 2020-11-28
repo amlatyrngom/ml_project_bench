@@ -513,7 +513,7 @@ def find_anomalies(errors, index, z_range=(0, 10), window_size=None, window_size
             inverted_window = mean - (window - mean)
             inverted_window_sequences = _find_window_sequences(inverted_window, z_range,
                                                                anomaly_padding, min_percent,
-                                                               window_start)
+                                                               window_start, fixed_threshold)
             sequences.extend(inverted_window_sequences)
 
         window_start = window_start + window_step_size
@@ -521,11 +521,10 @@ def find_anomalies(errors, index, z_range=(0, 10), window_size=None, window_size
     sequences = _merge_sequences(sequences)
 
     anomalies = list()
-    # plt.figure()
+    plt.figure()
     for start, stop, score in sequences:
         anomalies.append([index[int(start)], index[int(stop)], score])
-   
-    #     plt.axvspan(start, stop, facecolor='g', alpha=0.5)
-    # plt.plot(errors)
-    # plt.show()
+        plt.axvspan(start, stop, facecolor='g', alpha=0.5)
+    plt.plot(errors)
+    plt.savefig("orbit_anomalies.png")
     return np.asarray(anomalies)

@@ -12,7 +12,7 @@ class OrbitTAD(object):
         self.value_col = value_column
         self.time_col = time_column
         self.global_trend_option = global_trend_option
-        self.model = DLTFull(response_col=self.value_col, date_col=self.time_col, seasonality=52, seed=42, global_trend_option=global_trend_option)
+        self.model = DLTFull(response_col=self.value_col, date_col=self.time_col, seed=42, global_trend_option=global_trend_option)
 
     def monotonize(self, df):    
         df = df.copy()
@@ -48,6 +48,6 @@ class OrbitTAD(object):
         plt.plot(x, y2)
         plt.plot(x, errors)
         plt.savefig('orbit_predict.png')
-        return errors, X.index       
+        return errors, (list(X.timestamp.astype(int) // 10**9))       
         
 
