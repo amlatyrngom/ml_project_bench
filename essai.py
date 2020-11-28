@@ -42,11 +42,12 @@ def make_hyperparams(global_trend):
 score_dataframes = []
 summary_dataframes = []
 
-trends = ['linear'] #, 'flat', 'logistic', 'loglinear']
+trends = ['flat'] #, 'flat', 'logistic', 'loglinear']
+datasets = ['realTweets', 'realAWSCloudwatch', 'realAdExchange', 'artificialWithAnomaly', 'realTraffic']
 
 for trend in trends:
     pipelines = ['orbit']
-    data = BENCHMARK_DATA
+    data = {k:BENCHMARK_DATA[k] for k in datasets}
     print(data)
     hyperparameters = make_hyperparams(trend)
     scores = benchmark(pipelines=pipelines, datasets=data, metrics=metrics, rank='f1', hyperparameters=hyperparameters)

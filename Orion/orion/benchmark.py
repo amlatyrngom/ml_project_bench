@@ -101,6 +101,11 @@ def _evaluate_signal(pipeline, name, dataset, signal, hyperparameter, metrics,
         start = datetime.utcnow()
         pipeline = _load_pipeline(pipeline, hyperparameter)
         anomalies = analyze(pipeline, train, test)
+
+        print("TRUTH")
+        print(truth)
+        print("ANOMS")
+        print(anomalies)
         elapsed = datetime.utcnow() - start
 
         scores = {
@@ -108,6 +113,8 @@ def _evaluate_signal(pipeline, name, dataset, signal, hyperparameter, metrics,
             for name, scorer in metrics.items()
         }
         scores['status'] = 'OK'
+        print("SCORES: ", scores)
+
 
     except Exception as ex:
         LOGGER.exception("Exception scoring pipeline %s on signal %s (test split: %s), error %s.",
@@ -130,6 +137,7 @@ def _evaluate_signal(pipeline, name, dataset, signal, hyperparameter, metrics,
     scores['split'] = test_split
     scores['dataset'] = dataset
     scores['signal'] = signal
+
 
     return scores
 

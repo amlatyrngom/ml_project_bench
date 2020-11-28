@@ -269,7 +269,6 @@ class BaseLGT(BaseModel):
 
         # validate ordering of time series
         date_array = pd.to_datetime(df[self.date_col]).reset_index(drop=True)
-        print("DATE_ARRAY: ", date_array)
         if not is_ordered_datetime(date_array):
             raise ModelException('Datetime index must be ordered and not repeat')
 
