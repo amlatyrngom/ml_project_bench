@@ -32,8 +32,7 @@ class ProphetTAD(object):
             self.model.add_seasonality(name='weekly_%s'%i, period=total_length/i, fourier_order=5)
         # self.model.add_seasonality(name='monthly', period=30.5, fourier_order=5)
         # self.model.add_seasonality(name='daily', period=0.5, fourier_order=5)
-
-        self.model.fit(dataf, verbose = True)
+        self.model.fit(dataf, verbose = True, iter=250)
 
 
     def predict(self, X, index):
