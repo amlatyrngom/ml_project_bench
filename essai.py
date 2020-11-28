@@ -42,12 +42,14 @@ def make_hyperparams(global_trend):
 score_dataframes = []
 summary_dataframes = []
 
-trends = ['flat'] #, 'flat', 'logistic', 'loglinear']
-datasets = ['realTweets', 'realAWSCloudwatch', 'realAdExchange', 'artificialWithAnomaly', 'realTraffic']
+trends = ['flat']
+datasets = ['MSL', 'SMAP']
 
 for trend in trends:
     pipelines = ['orbit']
     data = {k:BENCHMARK_DATA[k] for k in datasets}
+    for k, v in data.items():
+        print(len(v))
     print(data)
     hyperparameters = make_hyperparams(trend)
     scores = benchmark(pipelines=pipelines, datasets=data, metrics=metrics, rank='f1', hyperparameters=hyperparameters)
@@ -60,5 +62,5 @@ for trend in trends:
     summary_dataframes.append(score_summary)
 
 
-pd.concat(score_dataframes, ignore_index=True).to_pickle("orbit_scores.pkl")
-pd.concat(summary_dataframes, ignore_index=True).to_pickle("orbit_summaries.pkl")
+pd.concat(score_dataframes, ignore_index=True).to_pickle("orbit_scores_nasa.pkl")
+pd.concat(summary_dataframes, ignore_index=True).to_pickle("orbit_summaries_nasa.pkl")
