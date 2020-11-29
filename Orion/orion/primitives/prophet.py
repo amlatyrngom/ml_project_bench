@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from statsmodels.tsa import arima_model
 import matplotlib.pyplot as plt
+from sklearn.metrics import r2_score
+
 
 class ProphetTAD(object):
     def __init__(self, value_column='value', time_column='timestamp'):
@@ -21,6 +23,7 @@ class ProphetTAD(object):
         dataf['ds'] =  self.timestamps 
         ## uncomment if index is timestamp
         # dataf['ds'] = pd.to_datetime(index)
+        print(dataf['ds'] )
         dataf['y'] = X[:,0]
         self.model = Prophet(changepoint_prior_scale=0.001 ,  yearly_seasonality=True,
             weekly_seasonality=True,
@@ -41,17 +44,21 @@ class ProphetTAD(object):
         predictions = np.zeros(X.shape)
         df = pd.DataFrame()
         ### Add same aribtirary timestamps  ###
+        # 
         ### Fix when there is train/test split ####
-        df['ds'] = self.timestamps
+        split = False
+        if split:
+            df['ds'] =  pd.date_range(start=self.timestamps[-1], periods = len(X), freq = '1H')
+        else: df['ds'] = self.timestamps
         
         ## uncomment if index is timestamp
-        # dataf['ds'] = pd.to_datetime(index)
+        # df['ds'] = pd.to_datetime(index)
         
 
         predictions[:,0] = self.model.predict(df)['yhat'].tolist()
-        # plt.plot(predictions)
-        # plt.plot(X[:,0])
-        # plt.show()
+        print(X.shape, predictions.shape)
+        try: print(r2_score(X[:,:],predictions[:,:], ))
+        except:pass
         return predictions, X[:,:]
         
 

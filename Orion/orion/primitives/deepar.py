@@ -21,7 +21,7 @@ class DeepAR(object):
 	def fit(self, X):
 		print('start fit')
 		T,_ = X.shape  # number of time series
-		X = X[[self.value_col]].values
+		# X = X[[self.value_col]].values
 		print(X.shape)
 		prediction_length = self.h
 		train_data = X.T
@@ -40,8 +40,8 @@ class DeepAR(object):
 		
 	def predict(self, X):
 		#initialise prediction array
-		index = X[[self.time_col]].values
-		X = X[[self.value_col]].values
+		# index = X[[self.time_col]].values
+		# X = X[[self.value_col]].values
 		data_test = X.T
 		predictions = np.zeros(data_test.shape)
 		start_index = len(self.train_data)
@@ -68,6 +68,5 @@ class DeepAR(object):
 		        predictions[j,i*self.h:(i+1)*self.h] = forecast_it[it].mean
 		        it+=1
 		# error = np.abs((predictions - X.T))
-		index 
-		return predictions[:,:].T, X[:,:], index
+		return predictions[:,:].T, X[:,:]#, index
 

@@ -1,0 +1,7 @@
+,pipeline,rank,f1,recall,precision,confusion_matrix,status,elapsed,split,dataset,signal
+0,prophet,1,0.99999999985,0.9999999999,0.9999999999,"(None, 0, 0, 1)",OK,241.452464,False,artificialWithAnomaly,art_daily_jumpsup
+1,prophet,2,0.99999999985,0.9999999999,0.9999999999,"(None, 0, 0, 1)",OK,233.326494,False,artificialWithAnomaly,art_load_balancer_spikes
+2,prophet,3,0.6666666665777777,0.9999999999,0.499999999975,"(None, 1, 0, 1)",OK,222.535917,False,artificialWithAnomaly,art_increase_spike_density
+3,prophet,4,0.0,0.0,0.0,"(None, 0, 1, 0)",OK,208.506992,False,artificialWithAnomaly,art_daily_flatmiddle
+4,prophet,5,0.0,0.0,0.0,"(None, 0, 1, 0)",OK,214.134509,False,artificialWithAnomaly,art_daily_jumpsdown
+5,prophet,6,0.0,0.0,0.0,"(None, 0, 1, 0)",OK,235.508139,False,artificialWithAnomaly,art_daily_nojump

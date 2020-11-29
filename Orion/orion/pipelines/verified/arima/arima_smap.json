@@ -25,6 +25,6 @@
     },
     "orion.primitives.timeseries_anomalies.find_anomalies#1": {
         "window_size": 2000,
-        "window_step_size": 100
+        "fixed_threshold": true
     }
 }

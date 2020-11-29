@@ -1,0 +1,8 @@
+,pipeline,rank,f1,recall,precision,confusion_matrix,status,elapsed,split,dataset,signal
+0,prophet,1,0.9999999999,0.99999999995,0.99999999995,"(None, 0, 0, 2)",OK,210.541381,False,realTraffic,occupancy_t4013
+1,prophet,2,0.9999999999,0.99999999995,0.99999999995,"(None, 0, 0, 2)",OK,211.801019,False,realTraffic,speed_t4013
+2,prophet,3,0.6666666666,0.4999999999875,0.99999999995,"(None, 0, 2, 2)",OK,123.283786,False,realTraffic,speed_7578
+3,prophet,4,0.39999999995200003,0.9999999999,0.24999999999375,"(None, 3, 0, 1)",OK,234.601979,False,realTraffic,speed_6005
+4,prophet,5,0.3333333332944444,0.9999999999,0.199999999996,"(None, 4, 0, 1)",OK,643.494231,False,realTraffic,TravelTime_451
+5,prophet,6,0.2857142856571428,0.3333333333222222,0.24999999999375,"(None, 3, 2, 1)",OK,876.056267,False,realTraffic,TravelTime_387
+6,prophet,7,0.0,0.0,0.0,"(None, 1, 1, 0)",OK,213.275591,False,realTraffic,occupancy_6005

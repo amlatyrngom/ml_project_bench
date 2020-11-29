@@ -1,0 +1,2 @@
+,dataset,pipeline,fp,fn,tp,f1
+0,artificialWithAnomaly,deepar,3,0,6,0.799999999952
