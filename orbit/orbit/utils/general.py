@@ -13,7 +13,6 @@ def update_dict(original_dict, append_dict):
 
 
 def is_ordered_datetime(array):
-    print("ARRAY: ", array)
     """Returns True if array is ordered and non-repetitive"""
     return np.all(np.diff(array).astype(float) > 0)
 
