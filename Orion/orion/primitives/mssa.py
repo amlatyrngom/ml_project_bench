@@ -10,6 +10,7 @@ class mSSATAD(object):
 		self.model = mSSA(rank = rank,  col_to_row_ratio = 1)
 		self.value_col = value_column
 		self.time_col = time_column
+		print("MSSA RANK:", rank)
 
 
 	def fit(self, X):

@@ -86,9 +86,15 @@ def _sort_leaderboard(df, rank, metrics):
 
 def _evaluate_signal(pipeline, name, dataset, signal, hyperparameter, metrics,
                      test_split=False, detrend=False):
-
-    train, test = _load_signal(signal, test_split)
-    truth = load_anomalies(signal)
+    if (dataset == 'custom'):
+        train = pd.read_csv('custom_data/{}.csv'.format(signal))
+        train['timestamp'] = train['timestamp'].astype(int)
+        train['value'] = train['value'].astype(float)
+        test = train
+        truth = pd.read_csv('custom_data/{}_truth.csv'.format(signal))
+    else:
+        train, test = _load_signal(signal, test_split)
+        truth = load_anomalies(signal)
 
     if detrend:
         train = _detrend_signal(train, 'value')
