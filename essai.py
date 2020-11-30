@@ -1,5 +1,3 @@
-from time import time
-from tqdm import tqdm 
 import site
 import sys
 import pandas as pd 
@@ -16,13 +14,21 @@ from orion.benchmark import benchmark, _summarize_results_datasets
 from Orion.orion.evaluation import CONTEXTUAL_METRICS as METRICS
 from Orion.orion.evaluation import contextual_confusion_matrix
 from functools import partial
+from Orion.orion.benchmark import _summarize_results_datasets
+import os
+import pandas as pd
+from orion.benchmark import benchmark
 
-if ('accuracy' in METRICS): del METRICS['accuracy']
-METRICS['confusion_matrix'] = contextual_confusion_matrix
-metrics = {k: partial(fun, weighted=False) for k, fun in METRICS.items()}
+site.addsitedir('Orion/')
+site.addsitedir('MLPrimitives/')
 
-BUCKET = 'd3-ai-orion'
 S3_URL = 'https://{}.s3.amazonaws.com/{}'
+BUCKET = 'd3-ai-orion'
+
+BENCHMARK_PATH = os.path.join(os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), '..'),
+    'benchmark'
+)
 
 BENCHMARK_DATA = pd.read_csv(S3_URL.format(
     BUCKET, 'datasets.csv'), index_col=0, header=None).applymap(ast.literal_eval).to_dict()[1]

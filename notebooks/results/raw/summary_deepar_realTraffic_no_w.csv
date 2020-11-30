@@ -1,0 +1,2 @@
+,dataset,pipeline,fp,fn,tp,f1
+0,realTraffic,deepar,11,4,10,0.5714285713805715

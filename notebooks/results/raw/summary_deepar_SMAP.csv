@@ -1,0 +1,2 @@
+,dataset,pipeline,fp,fn,tp,f1
+0,SMAP,deepar,52,29,38,0.4840764330720922

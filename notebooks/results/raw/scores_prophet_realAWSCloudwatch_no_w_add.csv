@@ -1,0 +1,4 @@
+,pipeline,rank,f1,recall,precision,confusion_matrix,status,elapsed,split,dataset,signal
+0,prophet,1,0.6666666665777777,0.499999999975,0.9999999999,"(None, 0, 1, 1)",OK,295.971863,False,realAWSCloudwatch,ec2_network_in_5abac7
+1,prophet,2,0.6666666665777777,0.9999999999,0.499999999975,"(None, 1, 0, 1)",OK,275.048059,False,realAWSCloudwatch,ec2_cpu_utilization_ac20cd
+2,prophet,3,0.0,0.0,0.0,"(None, 0, 1, 0)",OK,230.727186,False,realAWSCloudwatch,ec2_disk_write_bytes_1ef3de
